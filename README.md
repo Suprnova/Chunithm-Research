@@ -1,4 +1,4 @@
-This is an informative document on how the charts in Chunithm are formatted and function. This is **not** meant to be a complete guide on how to create custom charts for Chunithm. All information on this document was discovered via personal research. Contributions and further research are welcome. This document may be used for any purpose, including the creation of a tool to create Chunithm charts. See [UNLICENSE](https://github.com/Suprnova123/Chunithm-Charting-Research/blob/main/UNLICENSE) for more information.
+This is an informative document on how the charts in Chunithm are formatted and function. This is **not** meant to be a complete guide on how to create custom charts for Chunithm. All information on this document was discovered via personal research. Contributions and further research are welcome. This document may be used for any purpose, including the creation of a tool to create Chunithm charts. See LICENSE for more information.
 
 # Things to know
 
@@ -192,6 +192,117 @@ A mine note involves the player not touching the cell that the mine is placed on
 | ---- | ---- | ---- | ---- | ---- |
 
 Mine notes require the same information as Tap notes, and simply follow the universal schema mentioned above.
+
+# Demonstration
+
+Below is an excerpt from the .c2s file for Cyaegha's MASTER difficulty, which has a RESOLUTION of 386.
+
+```
+TAP	8	0	6	4
+TAP	8	0	12	4
+SLC	8	96	4	4	7	3	4
+TAP	8	96	10	4
+SLC	8	103	3	4	10	2	4
+SLC	8	113	2	4	13	1	4
+SLC	8	126	1	4	22	0	4
+SLD	8	148	0	4	236	0	4
+TAP	8	192	8	4
+SLC	8	288	6	4	4	7	4
+SLC	8	292	7	4	12	9	4
+SLC	8	304	9	4	9	10	4
+SLC	8	313	10	4	12	11	4
+SLC	8	325	11	4	23	12	4
+SLD	8	348	12	4	36	12	4
+AHD	9	0	0	4	SLD	192
+CHR	9	0	4	8	CE
+AIR	9	0	4	8	CHR
+AHD	9	0	12	4	SLD	192
+TAP	9	288	3	4
+TAP	9	288	9	4
+```
+
+Below is what the gameplay for this section looks like. This will be broken down into each line of the .c2s file to see their corresponding patterns in gameplay.
+
+![Demonstration of Cyaegha Excerpt](https://github.com/Suprnova123/Chunithm-Charting-Research/blob/main/_assets/craegha_example.gif?raw=true)
+
+The two tap notes at the beginning appear as:
+```
+TAP	8	0	6	4
+TAP	8	0	12	4
+```
+
+The order of values in these lines is the following:
+
+``Tap note | on the 8th measure | with an offset of 0 | starts on cell 6/cell 12 | extends 4 cells to the right``
+
+You can tell that these notes are supposed to occur at the same time because the share the same measure and offset. Remember that the cells are labelled as 0-15, meaning that the first cell on the left is cell 0.
+
+The next two notes are a slide and a tap that occur at the same time. These appear in the document as:
+```
+SLC	8	96	4	4	7	3	4
+TAP	8	96	10	4
+```
+
+Note that the slide has the note type of SLC, since the slider starts in motion. If the slider was stationary at the beginning, it would've had an SLD note type.
+
+The order of values for the slide note is the following:
+
+``Slide note | on the 8th measure | with an offset of 96 | starts on cell 4 | extends 4 cells to the right | has a duration of 7 resolution | ends on cell 3 | ends with a width of 4``
+
+There are a few important things to note here. For one, with a measure of 8 and an offset of 96, this means that the note happens on the second beat of the 8th measure (remember, an offset of 0 means the first beat). It also has a very short duration, at only 7 resolution. This means that the slider only lasts for almost 2/100th of a measure. The reason it's so short is because it's designed to look like a curve. There are later SLC notes that attach to the first slider that gradually change to the shape to a curve.
+
+The tap note later on has an order of values of:
+
+``Tap note | on the 8th measure | with an offset of 96 | starts on cell 10 | extends 4 cells to the right``
+
+Again, since the two notes occur at the same measure and offset, they are simultaneous.
+
+The next notes are several control points for a slider, as well as creating a new slider, and a tap note. Their lines are:
+```
+SLC	8	103	3	4	10	2	4
+SLC	8	113	2	4	13	1	4
+SLC	8	126	1	4	22	0	4
+SLD	8	148	0	4	236	0	4
+TAP	8	192	8	4
+SLC	8	288	6	4	4	7	4
+SLC	8	292	7	4	12	9	4
+SLC	8	304	9	4	9	10	4
+SLC	8	313	10	4	12	11	4
+SLC	8	325	11	4	23	12	4
+SLD	8	348	12	4	36	12	4
+```
+
+There are several important things to note here. For one, the SLCs at the top are within very quick succession of each other. As stated above, this is because it's creating a curved slider, so it's very precise to look smooth. There is also an SLD immediately after it, which has a duration of 236 resolution. This is important because you can see that this slider is supposed to end at the same time as the other slider. If you add together the offset, which is 148, and the duration, you'll get a value of 384. If you add together the offset and duration of the second SLD at the bottom, you also get 384. Since they are both on the same measure, this shows that they will end at the same time as each other. It's also worth mentioning that the second pair of SLCs are not related to the first pair. They start on a separate cell from the other slider, so it creates a new slider instead of extending a previous one.
+
+The final part of the excerpt contains several air notes, an air hold, an ex-note, and several tap notes. These appear in the file as:
+```
+AHD	9	0	0	4	SLD	192
+CHR	9	0	4	8	CE
+AIR	9	0	4	8	CHR
+AHD	9	0	12	4	SLD	192
+TAP	9	288	3	4
+TAP	9	288	9	4
+```
+
+You'll notice that both AHDs, the AIR, and the CHR notes all start at the same time, since they share the same measure and offset. Let's break down each note.
+
+The AHD notes represents the following:
+
+``Air hold note | on the 9th measure | with an offset of 0 | starts on the 0th cell/12th cell | extends to the right by 4 cells | leaches off of the Slider note that occupies that same cell | has a duration of 192 resolution``
+
+The CHR note represents:
+
+``Ex-note | on the 9th measure | with an offset of 0 | starts on the 4th cell | extends to the right by 8 cells | CE modifier``
+
+The AIR note represents:
+
+``Air note | on the 9th measure | with an offset of 0 | starts on the 4th cell | extends to the right by 8 cells | leaches off of the ex-note that occupies the same cell``
+
+The excerpt finally ends with two TAP notes, which mean the following:
+
+``Tap note | on the 9th measure | with an offset of 288 | starts on the 3rd/9th cell | extends to the right by 4 cells``
+
+This concludes the analysis of this excerpt of Cyaegha.
 
 # Disclaimer
 
