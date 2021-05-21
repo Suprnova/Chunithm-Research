@@ -242,7 +242,7 @@ TAP	9	288	9	4
 
 Below is what the gameplay for this section looks like. This will be broken down into each line of the .c2s file to see their corresponding patterns in gameplay.
 
-![Demonstration of Cyaegha Excerpt](https://raw.githubusercontent.com/Suprnova123/Chunithm-Charting-Research/main/_assets/cyaegha%20example.gif)
+![Demonstration of Cyaegha Excerpt](https://raw.githubusercontent.com/Suprnova123/Chunithm-Research/main/_assets/cyaegha%20example.gif)
 
 The two tap notes at the beginning appear as:
 ```
