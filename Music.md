@@ -88,4 +88,54 @@ The ``<previewStartTime>`` tag contains an integer that designates the location 
 
 The ``<previewEndTime>`` tag contains an integer that designates the location in the song, in milliseconds, that the preview will end. After ending, it will loop back to the ``<previewStartTime>``.
 
-Todo: worldsEndTagName, starDifType, stageName, and fumens array.
+## worldsEndTagName
+
+The ``<worldsEndTagName>`` tag contains a stock array, with an ``<id>`` value that corresponds with the WORLD'S END type that the music is, and a ``<str>`` value that has the name of the WORLD'S END type in kanji. If the track is not a WORLD'S END track, then the ``<id>`` has a value of ``-1`` and the ``<str>`` has a value of ``Invalid``. 
+
+## starDifType
+
+The ``<starDifType>`` tag contains an unknown integer. It's possible that this value correlates to the difficulty of the music in question.
+
+## stageName
+
+The ``<stageName>`` tag contains a stock array with an ``<id>`` value equal to the ID of a stage, which is the background video that appears behind the field during gameplay, and can be found in the path ``root¥app¥data¥AXXX¥stage``, and a ``<str>`` value equal to the ``<name><str>`` value found in the corresponding ``Stage.xml`` file.
+
+## fumens
+
+``<fumens>``, which means "譜面" and is translated into simply "music", is the tag that contains all information for each individual difficulty. The fumens tag will contain 5 ``<MusicFumenData>`` tags, one for each difficulty, even if there are less than 5 difficulties.
+
+## MusicFumenData
+
+The ``<MusicFumenData>`` tag contains an array of information for each difficulty on the song. All tags listed below are part of the array.
+
+### resourceVersion
+
+The ``<resourceVersion>`` tag always contains a stock array with an ``<id>`` value of ``0`` and an empty ``<str />`` tag.
+
+### type
+
+The ``<type>`` tag is a stock array that contains information on which difficulty this specific ``<MusicFumenData>`` is. It has an ``<id>`` value that can be anywhere from ``0`` to ``4``. The ``<str>`` value can have a value of ``ID_00``, ``ID_01``, ``ID_O2``, ``ID_03``, or ``ID_04``, but must end with the same digit as the ``<id>`` tag's value. The ``<data>`` tag contains the name of the difficulty, which can be ``BASIC``, ``ADVANCED``, ``EXPERT``, ``MASTER``, or ``WORLD'S END``. This value has to correspond with the ``<id>`` and ``<str>`` tag in order. For example, BASIC has an ID of 0, ADVANCED has an ID of 1, and so on.
+
+### enable
+
+The ``<enable>`` tag can have a value of either ``true`` or ``false``. If the value is false, the difficulty will not appear. This is set to false on the WORLD'S END ``<MusicFumenData>`` tags when the song is normal, and is set to false on all difficulties besides WORLD'S END on WORLD'S END tracks.
+
+### file
+
+The ``<file>`` tag contains a ``<path>`` tag, which has the file name of the .c2s file associated with the specific difficulty. If the difficulty doesn't exist and is disabled, then it is replaced by an empty ``<path />`` tag.
+
+### level
+
+The ``<level>`` tag contains an integer equal to the level of difficulty of the song as shown in-game. If the difficulty doesn't exist, or if the difficulty is WORLD'S END, then the tag has a value of ``0``.
+
+### levelDecimal
+
+The ``<levelDecimal>`` tag contains an integer from 0-99 equal to the decimal difficulty of the track. This is combined with the ``<level>`` tag to create the accurate difficulty level. This level isn't seen during gameplay, but is instead used for sorting tracks by difficulty. If the difficulty doesn't exist, or if the difficulty is WORLD'S END, then the tag has a value of ``0``.
+
+### notesDesigner
+
+The ``<notesDesigner>`` tag is always empty, and as such is written as ``<notesDesigner />``. This is because the ``.c2s`` file contains the note designer's information instead.
+
+### defaultBpm
+
+The ``<defaultBpm>`` tag always has a value of ``<0>``.
