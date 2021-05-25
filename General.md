@@ -11,7 +11,7 @@ Chunithm's method of receiving updates involves storing the new information in s
 
 # File Types
 
-This is a list of file types of interest, the locations of them, and links to additional info if necessary. This is **not** an extensive list, some files that are not of interest will not be included.
+This is a list of file types of interest that do not have a dedicated page for them, as well as the locations of them and links to additional info if necessary. This is **not** an extensive list, some files that are not of interest will not be included.
 
 ## Audio Files
 
@@ -19,4 +19,22 @@ Audio files for music are found in ``root¥app¥data¥AXXX¥cueFile¥cueFileXXXX
 
 ## Jacket Files
 
-Jacket files, otherwise known as the images that are associated with the song, are found in the same folder as the chart files in a ``.dds`` (DirectDraw Surface) file format, which can be opened in software such as [GIMP](https://www.gimp.org/). Jacket files are always in a resolution of 300x300.
+Jacket files, otherwise known as the images that are associated with the song, are found in the same folder as the chart files in a ``.dds`` (DirectDraw Surface) file format, which can be opened in software such as [GIMP](https://www.gimp.org/). Jacket files are always in a resolution of 300x300. To imitate the same file size as Chunithm's jackets, although not usually necessary, export any custom ``.dds`` jacket files with BC1 / DXT1 compression from GIMP's export settings.
+
+## Rights Files
+
+Rights files are the images that appear on the bottom left side of the song selection screen for specific songs. They are intended to be used as the file containing the text itself, as the image behind the text is its own separate texture that is reused for every rights file. Rights files are always formatted in a ``.dds`` (DirectDraw Surface) file format in a resolution of 512x48, and can be found in ``root¥app¥data¥AXXX¥rightsInfo¥rightsInfoXXXXXX``.
+
+# Dummies
+
+Dummy files are used for textures to serve as a template for how the game expects them to be formatted, mostly in terms of resolution. These dummy textures are ripped straight from the game. Note that the ``.png`` versions for these files are provided for convenience, all final versions should still be in a ``.dds`` format.
+
+## Jacket Dummies
+
+* [.dds](https://github.com/Suprnova123/Chunithm-Research/blob/main/_assets/jacket_dummy.dds)
+* [.png](https://github.com/Suprnova123/Chunithm-Research/blob/main/_assets/jacket_dummy.png)
+
+## Rights Dummies
+
+* [.dds](https://github.com/Suprnova123/Chunithm-Research/blob/main/_assets/rights_dummy.dds)
+* [.png](https://github.com/Suprnova123/Chunithm-Research/blob/main/_assets/rights_dummy.png)
