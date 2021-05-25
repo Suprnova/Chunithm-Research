@@ -5,5 +5,6 @@ This is an informative document on how the files in Chunithm are formatted and f
 * [General Information](https://github.com/Suprnova123/Chunithm-Research/blob/main/General.md)
 * [Charting](https://github.com/Suprnova123/Chunithm-Research/blob/main/Charting.md)
 * [Music](https://github.com/Suprnova123/Chunithm-Research/blob/main/Music.md)
+* [How to Properly Add Customs](https://github.com/Suprnova123/Chunithm-Research/blob/main/Customs.md)
 
 (More documents are to come)
