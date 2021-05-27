@@ -2,6 +2,7 @@ This is a list of general information that should be known regarding Chunithm's 
 
 # Meta
 
+* This is **not** a guide for creating custom songs in Chunithm "clones". This includes programs like SUSPlayer, Laverita, or Seaurchin. These games use different chart formats and have an entirely different, usually streamlined, way of implementing custom songs.
 * Chunithm makes frequent use of ``.xml`` files. This document will, for the sake of simplicity, assume that you understand the basic format of ``.xml`` files.
 * References to "music" and "song" will refer to the files in the ``music`` folder, which includes ``Music.xml``, as well as the chart files. References to ``audio`` will refer to the files in the ``cueFile`` folder. 
 
