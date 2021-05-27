@@ -2,12 +2,69 @@ This is a general documentation on the chart files used in the game. These files
 
 # Things to know
 
+* This document is not guaranteed to be 100% accurate. Some tag definitions are based on assumptions and might require further testing.
 * Most counting in this file format starts from 0. A measure of 0 means at the beginning of the song, a cell of 0 means the first cell on the left, etc.
 * The location for chart files can be found in ``root¥app¥data¥AXXX¥music¥musicXXXX``. The file format for charts is ``.c2s``, and are plain text files that can be opened in tools like Notepad++.
 * A cell is the corresponding key for the note on the playfield. The playfield has 16 columns, numbers from 0-15 from left to right.
 * A measure is a function of time containing a specific amount of beats. Each measure usually contains 4 beats, and stays relatively consistent throughout the song.
+* From my experience, Chunithm will usually ignore a note unless it is formatted in a very specific way. In an existing chart file, using tab instead of space to add modifiers to notes works, while using space doesn't. This is exclusive to Notepad++ in my experience.
+* Chunithm reloads ``.c2s`` files on selection. This means that it's possible to debug custom charts by simply reselecting the song that is being changed. To streamline this process, use a DANGER skill such as "今わの際" (skill ID 102005), and place ≈20 TAP notes a few measures after your custom notes. This way, you will automatically fail the track and be able to reselect the track much faster, rather than waiting for the song to finish.
 
 # Tags
+
+## **VERSION**
+
+Usually set to 1.08.00. (denotes the version of the ``.c2s`` handler that the chart is designed for?)
+
+## **MUSIC**
+
+Usually set to 0. Likely used to be the ID for the Music before the ``Music.xml`` file contained it.
+
+## **SEQUENCEID**
+
+Usually set to 0.
+
+## **DIFFICULT**
+
+Usually set to 00. Likely used to be the difficulty (BASIC, ADVANCED, EXPERT, MASTER, WORLD'S END) for the Music before the ``Music.xml`` file contained it.
+
+## **LEVEL**
+
+Usually set to 0.0. Likely used to be the level for the chart file before ``Music.xml`` contained it.
+
+## **CREATOR**
+
+Designates the creator of the chart file. Note that this string will appear on the bottom left of the song's card on the song selection screen unless the difficulty is set to BASIC or ADVANCED.
+
+## **BPM_DEF**
+
+Designates the default BPM.
+
+### Schema:
+
+| 1 | 2 | 3 | 4 |
+| ---- | ---- | ---- | ---- |
+
+1 usually contains the true default BPM, or the BPM that the song starts with. 2 usually contains the alternative BPM, or the BPM that the song has the most often besides the BPM in 1. If there is no alternative BPM, then 2 mirrors 1. 3 and 4 seem to mirror 2 and 1 respectively.
+
+## **RESOLUTION**
+
+Denotes the resolution of the song. Always set to 384.
+## **CLK_DEF**
+
+Always set to 384.
+
+## **PROGJUDGE_BPM**
+
+Always set to 240.000.
+
+## **PROGJUDGE_AER**
+
+Always set to 0.999.
+
+## **TUTORIAL**
+
+Designates whether or not the specified track is a tutorial track.
 
 ## **BPM**
 
@@ -124,7 +181,7 @@ Ex-Notes are similar to tap notes, although they give the player more score for 
 | "CHR" | Measure | Offset | Cell | Width | Unknown |
 | ---- | ---- | ---- | ---- | ---- | ---- |
 
-* Unknown: Seems to always have a value of "UP" or "CE".
+* Unknown: Seems to always have a value of "UP", "CE", or "DW".
 
 ### **Hold**
 
@@ -212,7 +269,7 @@ A mine note involves the player not touching the cell that the mine is placed on
 
 Mine notes require the same information as Tap notes, and simply follow the universal schema mentioned above.
 
-# Demonstration
+# Notes Demonstration
 
 Below is an excerpt from the .c2s file for Cyaegha's MASTER difficulty, which has a RESOLUTION of 386.
 
@@ -322,3 +379,43 @@ The excerpt finally ends with two TAP notes, which mean the following:
 ``Tap note | on the 9th measure | with an offset of 288 | starts on the 3rd/9th cell | extends to the right by 4 cells``
 
 This concludes the analysis of this excerpt of Cyaegha.
+
+# Ending Tags
+
+**Note:** Although resulting from minimal testing, these values do not seem to influence the functionality of the track. As such, they can be completely ignored when creating custom tracks.
+
+## **T_REC_XXX**
+
+``XXX`` is replaced with the shorthand for a note type (TAP, CHR, FLK, MNE, HLD, SLD, AIR, AHD), as well as one field labeled ``T_REC_ALL``. Appears to be a count of the amount of notes of the specified type that are in each chart. ``T_REC_ALL`` is equal to the values of the preceeding ``T_REC_XXX`` fields added together.
+
+## **T_NOTE_XXX**
+
+Seems to be identical to ``T_REC_XXX``, although the values are different from each other despite being in the same chart.
+
+## **T_NUM_XXX**
+
+Seems to be identical to ``T_REC_XXX`` and ``T_NOTE_XXX``, although there is no ``T_XXX_ALL`` field,  instead there is an unknown ``T_NUM_AAC`` field.
+
+## **T_CHRTYPE_XX**
+
+``XX`` is replaced with the shorthand for the CHR note's modifiers (UP, DW, CE). Appears to count the amount of CHR notes with the specified modifier in the track.
+
+## **T_LEN_XXX**
+
+``XXX`` is replaced with the shorthand for "sustain" notes (HLD, SLD, AHD, ALL), as well as one field labeled ``T_LEN_ALL``. Seems to be identical to ``T_REC_XXX``, although it instead counts the amount of milliseconds that the specified type of "sustain" note is active. ``T_LEN_ALL`` is equal to the values of the preceeding ``T_LEN_XXX`` fields added together.
+
+## **T_JUDGE_XXX**
+
+Unknown.
+
+## **T_FIRST_XXXX**
+
+Has two tags, ``T_FIRST_MSEC`` and ``T_FIRST_RES``. Both denote the timestamp of the first note in milliseconds and resolution respectively.
+
+## **T_FINAL_XXXX**
+
+Has two tags, ``T_FINAL_MSEC`` and ``T_FINAL_RES``. Both denote the timestamp of the last note in milliseconds and resolution respectively. This is not necessarily equal to the timestamp of the note listed in the chart file, as sustained notes will move the timestamp to when the note is finished.
+
+## **T_PROG_XX**
+
+Has 20 tags, starting from ``T_PROG_00`` and progressing to ``T_PROG_95`` as the final tag in increments of 5. Unknown.
