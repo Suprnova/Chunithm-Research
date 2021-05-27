@@ -271,7 +271,7 @@ Mine notes require the same information as Tap notes, and simply follow the univ
 
 # Notes Demonstration
 
-Below is an excerpt from the .c2s file for Cyaegha's MASTER difficulty, which has a RESOLUTION of 386.
+Below is a recreation of the MASTER difficulty chart for Cyaegha, which has a RESOLUTION of 386.
 
 ```
 TAP	8	0	6	4
@@ -297,7 +297,7 @@ TAP	9	288	3	4
 TAP	9	288	9	4
 ```
 
-Below is what the gameplay for this section looks like. This will be broken down into each line of the .c2s file to see their corresponding patterns in gameplay.
+Below is what the gameplay for this section looks like. This will be broken down into each line of the excerpt above to see their corresponding patterns in gameplay.
 
 ![Demonstration of Cyaegha Excerpt](https://raw.githubusercontent.com/Suprnova123/Chunithm-Research/main/_assets/cyaegha%20example.gif)
 
