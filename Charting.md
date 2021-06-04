@@ -12,31 +12,31 @@ This is a general documentation on the chart files used in the game. These files
 
 # Tags
 
-## **VERSION**
+## VERSION
 
 Usually set to 1.08.00. (denotes the version of the ``.c2s`` handler that the chart is designed for?)
 
-## **MUSIC**
+## MUSIC
 
 Usually set to 0. Likely used to be the ID for the Music before the ``Music.xml`` file contained it.
 
-## **SEQUENCEID**
+## SEQUENCEID
 
 Usually set to 0.
 
-## **DIFFICULT**
+## DIFFICULT
 
 Usually set to 00. Likely used to be the difficulty (BASIC, ADVANCED, EXPERT, MASTER, WORLD'S END) for the Music before the ``Music.xml`` file contained it.
 
-## **LEVEL**
+## LEVEL
 
 Usually set to 0.0. Likely used to be the level for the chart file before ``Music.xml`` contained it.
 
-## **CREATOR**
+## CREATOR
 
 Designates the creator of the chart file. Note that this string will appear on the bottom left of the song's card on the song selection screen unless the difficulty is set to BASIC or ADVANCED.
 
-## **BPM_DEF**
+## BPM_DEF
 
 Designates the default BPM.
 
@@ -47,26 +47,27 @@ Designates the default BPM.
 
 1 usually contains the true default BPM, or the BPM that the song starts with. 2 usually contains the alternative BPM, or the BPM that the song has the most often besides the BPM in 1. If there is no alternative BPM, then 2 mirrors 1. 3 and 4 seem to mirror 2 and 1 respectively.
 
-## **RESOLUTION**
+## RESOLUTION
 
 Denotes the resolution of the song. Always set to 384.
-## **CLK_DEF**
+
+## CLK_DEF
 
 Always set to 384.
 
-## **PROGJUDGE_BPM**
+## PROGJUDGE_BPM
 
 Always set to 240.000.
 
-## **PROGJUDGE_AER**
+## PROGJUDGE_AER
 
 Always set to 0.999.
 
-## **TUTORIAL**
+## TUTORIAL
 
 Designates whether or not the specified track is a tutorial track.
 
-## **BPM**
+## BPM
 
 Designates the BPM for the specified measure of the song.
 
@@ -75,7 +76,7 @@ Designates the BPM for the specified measure of the song.
 | Beginning Measure | Offset | BPM |
 | ---- | ---- | ---- |
 
-## **MET**
+## MET
 
 Designates the time signature for the specified measure of the song.
 
@@ -86,7 +87,7 @@ Designates the time signature for the specified measure of the song.
 
 It is very important to note that the values for the time signature are in reverse. It is also worth mentioning that this is purely cosmetic. The only thing that this value will affect is the placement of the thin measure lines on the playfield.
 
-## **SFL**
+## SFL
 
 Designates the speed of the playfield at the specified measure of the song.
 
@@ -104,11 +105,11 @@ It is important to note that the multiplier must have an accuracy of 0.000001, m
 | Note Type | Measure | Offset | Cell | Width |
 | ---- | ---- | ---- | ---- | ---- |
 
-### **Note Type**
+### Note Type
 
 A note type is the type of note that you want to be placed at this particular point. There are various types of notes that can be used, and most of them will have additional variables that will be appended to the end of the typical schema. There will be more information later on explaining each of these notes.
 
-#### **Note Types:**
+#### Note Types:
 
 * TAP (tap)
 * CHR (ex-note)
@@ -125,11 +126,11 @@ A note type is the type of note that you want to be placed at this particular po
 * ADL (air down-left)
 * MNE (mine)
 
-### **Measure**
+### Measure
 
 The measure is the specific measure that you want the note to be placed in. Each measure is (usually) 4 beats. The value starts from 0 and continues infinitely, although should always end with the song.
 
-### **Offset**
+### Offset
 
 A function of time to show how offset a note or timing point should be from the measure. This relies on the resolution of the song, designated by the RESOLUTION tag. The full resolution is an entire measure, so with a resolution of 384, the first beat of a measure would be 0, the second would be 96, the third would be 192, the fourth would be 288. To get the desired beat, divide the resolution by 4, multiply it by the beat that you want, and then subtract it by the resolution divided by 4.
 
@@ -149,11 +150,11 @@ For example, if I wanted a note on the 2 1/2th beat of a 4 beat song with a reso
 144
 ```
 
-### **Cell**
+### Cell
 
 As stated above, the cell is the numerical ID for the column in the playfield that the note should appear in. Note that this value should be the column that the note first appears in **from the left**.
 
-### **Width**
+### Width
 
 Separate from the Cell value, the Width value notes how wide the note should be, extending from the value listed in Cell to the right. The minimum value is 1, which means that the note only occupies the column listed in cell. As an example, a width of 3 on a note with a cell value of 7 would have the note occupy columns 7, 8, and 9.
 
@@ -161,7 +162,7 @@ Separate from the Cell value, the Width value notes how wide the note should be,
 
 Most note types require additional information to function correctly. This section will provide an example of the schema that the note uses, followed by an explanation for any values not included in the universal schema. Any values in quotes indicate a value that is consistent with that note.
 
-### **Tap**
+### Tap
 
 Tap notes are the most basic notes that can be charted. They simply require the player to hit the cell that the note occupies at the required time.
 
@@ -172,7 +173,7 @@ Tap notes are the most basic notes that can be charted. They simply require the 
 
 Tap notes do not differ from the universal schema listed above.
 
-### **Ex-Notes**
+### Ex-Notes
 
 Ex-Notes are similar to tap notes, although they give the player more score for hitting them accurately.
 
@@ -183,7 +184,7 @@ Ex-Notes are similar to tap notes, although they give the player more score for 
 
 * Unknown: Seems to always have a value of "UP", "CE", or "DW".
 
-### **Hold**
+### Hold
 
 Hold notes are similar to tap notes, but require the player to keep the designated cell pressed over a continuous period of time.
 
@@ -194,7 +195,7 @@ Hold notes are similar to tap notes, but require the player to keep the designat
 
 * Duration: The amount of time that the note needs to be held down for. This value is based on the same format for offset.
 
-### **Slide**
+### Slide
 
 Slide notes are similar to hold notes, but are capable of moving between cells while sustaining the hold. There are two types of slide notes, SLD and SLC. Slides that start with a straight line begin with an SLD, while slides that start immediately with movement start with an SLC. All slides end with an SLD note.
 
@@ -207,22 +208,22 @@ Slide notes are similar to hold notes, but are capable of moving between cells w
 * End Cell: The column that the slide will move towards over the duration of the slide. Similar to the Cell value, this value will be where the left side of the cell is, and can be anywhere from 0-15. To have a slide that stays straight over the duration, make the End Cell value the same as the Cell value.
 * End Width: The width that the slide will have at the end of the duration. Similar to the Width value, this value can be anywhere between 1-16. If the End Width differs from the original Width, the slider will gradually shrink or expand in width over the course of the slide.
 
-A slide will not end until you call an SLD in the same cell that another slide is in at that moment in time. To adjust a slide without interrupting it, use SLC.
+A slide will not end until you call an SLD in the same cell that another slide is in at that moment in time, without having another slide follow afterwards. Having an SLD in the middle of a continuous slide will add an additional blue note at that specific point, which is purely cosmetic. To adjust a slide without adding another note, use SLC.
 
 The feature of sliders shaking from side to side rapidly is not a built-in function of the game, it instead simply involves having the slider move left and right a few cells on very short offsets.
 
-### **Flick**
+### Flick
 
-A flick note involves the player having their finger within the cells that the flick inhabits, and then swiping to the left or the right depending on which direction the flick has.
+A flick note involves the player having their finger within the cells that the flick inhabits, and then swiping in any horizontal direction.
 
 #### Schema:
 
-| "FLK" | Measure | Offset | Cell | Width | Direction |
+| "FLK" | Measure | Offset | Cell | Width | Unknown |
 | ---- | ---- | ---- | ---- | ---- | ---- |
 
-* Direction: The direction that the user is meant to swipe in. The possible values are "L" for left and "R" for right.
+* Unknown: Always has a value of "L". Note that this is not the direction of the flick, flick notes can be hit from either direction.
 
-### **Air**
+### Air
 
 An air note involves the player raising their hands through the IR sensors above the physical keyboard. Unlike other notes, these notes act as modifiers for already existing notes. There are also different cosmetic versions of the note, however they each function identically.
 
@@ -234,7 +235,7 @@ An air note involves the player raising their hands through the IR sensors above
 * AIR/AUR/AUL: Each of these note types are identical functionality-wise, although affect the appearance of the arrow above the note. AIR has an upwards arrow, AUR has an up-right arrow, and AUL has an up-left arrow.
 * Target Note: This value designated what note the Air note "leeches" off of. You should have this note be in the same cell, measure, and offset as the Air note. It's also recommended to only use this note at the end of a note, rather than in the middle of a sustained note. This recommendation can be discarded for high-level charts.
 
-## **Air Hold**
+## Air Hold
 
 An air hold note involves having the player hold their hands up towards the sensor after performing an air note. Air holds will always end with a mid-air downwards note automatically.
 
@@ -248,7 +249,7 @@ An air hold note involves having the player hold their hands up towards the sens
 
 To have mid-air downwards notes in a sustained air note, make the first air hold note last until the point where the mid-air note would be, then add another air hold note that starts at the same offset where the preceeding air hold note ends.
 
-### **Downwards**
+### Downwards
 
 A downwards note involves the player lowering their hands through the IR sensors above the physical keyboard. Unlike other notes, these notes act as modifiers for already existing notes. There are also different cosmetic versions of the note, however they each function identically.
 
@@ -260,7 +261,7 @@ A downwards note involves the player lowering their hands through the IR sensors
 * ADW/ADR/ADL: Each of these note types are identical functionality-wise, although affect the appearance of the arrow above the note. ADW has a downwards arrow, ADR has a down-right arrow, and ADL has a down-left arrow.
 * Target Note: This value designated what note the downwards note "leeches" off of. You should have this note be in the same cell, measure, and offset as the downwards note. It's also recommended to only use this note at the end of a note, rather than in the middle of a sustained note. This recommendation can be discarded for high-level charts.
 
-### **Mines**
+### Mines
 
 A mine note involves the player not touching the cell that the mine is placed on. Touching the cell will result in the player losing score and possibly failing the track.
 
@@ -311,7 +312,7 @@ The order of values in these lines is the following:
 
 ``Tap note | on the 8th measure | with an offset of 0 | starts on cell 6/cell 12 | extends 4 cells to the right``
 
-You can tell that these notes are supposed to occur at the same time because the share the same measure and offset. Remember that the cells are labelled as 0-15, meaning that the first cell on the left is cell 0.
+You can tell that these notes are supposed to occur at the same time because they share the same measure and offset. Remember that the cells are labelled as 0-15, meaning that the first cell on the left is cell 0.
 
 The next two notes are a slide and a tap that occur at the same time. These appear in the document as:
 ```
@@ -384,38 +385,50 @@ This concludes the analysis of this excerpt of Cyaegha.
 
 **Note:** Although resulting from minimal testing, these values do not seem to influence the functionality of the track. As such, they can be completely ignored when creating custom tracks.
 
-## **T_REC_XXX**
+## T_REC_XXX
 
 ``XXX`` is replaced with the shorthand for a note type (TAP, CHR, FLK, MNE, HLD, SLD, AIR, AHD), as well as one field labeled ``T_REC_ALL``. Appears to be a count of the amount of notes of the specified type that are in each chart. ``T_REC_ALL`` is equal to the values of the preceeding ``T_REC_XXX`` fields added together.
 
-## **T_NOTE_XXX**
+## T_NOTE_XXX
 
 Seems to be identical to ``T_REC_XXX``, although the values are different from each other despite being in the same chart.
 
-## **T_NUM_XXX**
+## T_NUM_XXX
 
 Seems to be identical to ``T_REC_XXX`` and ``T_NOTE_XXX``, although there is no ``T_XXX_ALL`` field,  instead there is an unknown ``T_NUM_AAC`` field.
 
-## **T_CHRTYPE_XX**
+## T_CHRTYPE_XX
 
 ``XX`` is replaced with the shorthand for the CHR note's modifiers (UP, DW, CE). Appears to count the amount of CHR notes with the specified modifier in the track.
 
-## **T_LEN_XXX**
+## T_LEN_XXX
 
 ``XXX`` is replaced with the shorthand for "sustain" notes (HLD, SLD, AHD, ALL), as well as one field labeled ``T_LEN_ALL``. Seems to be identical to ``T_REC_XXX``, although it instead counts the amount of milliseconds that the specified type of "sustain" note is active. ``T_LEN_ALL`` is equal to the values of the preceeding ``T_LEN_XXX`` fields added together.
 
-## **T_JUDGE_XXX**
+## T_JUDGE_XXX
 
 Unknown.
 
-## **T_FIRST_XXXX**
+## T_FIRST_XXXX
 
 Has two tags, ``T_FIRST_MSEC`` and ``T_FIRST_RES``. Both denote the timestamp of the first note in milliseconds and resolution respectively.
 
-## **T_FINAL_XXXX**
+## T_FINAL_XXXX
 
 Has two tags, ``T_FINAL_MSEC`` and ``T_FINAL_RES``. Both denote the timestamp of the last note in milliseconds and resolution respectively. This is not necessarily equal to the timestamp of the note listed in the chart file, as sustained notes will move the timestamp to when the note is finished.
 
-## **T_PROG_XX**
+## T_PROG_XX
 
 Has 20 tags, starting from ``T_PROG_00`` and progressing to ``T_PROG_95`` as the final tag in increments of 5. Unknown.
+
+# Cosmetics
+
+This portion of the document will outline various cosmetic information on the notes found in game. This is NOT about generic information on the notes, like what the exact color of a note is, but rather the small details that might be useful to know when creating custom charts. This information does not have any bearing on gameplay.
+
+## Flick Notes
+
+Flick notes appear as a gray note with a small blue note inside of it. The blue note has a third of the width of the flick note and is centered on the note.
+
+## Air/Down Notes
+
+Both air and down notes have an arrow either above or below the note that it leeches off of, which has the same width as the note in question. Angled versions of these notes are always angled in a way that points to the cell immediately to the left or right of the original note.

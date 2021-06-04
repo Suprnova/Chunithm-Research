@@ -7,6 +7,10 @@ This is a list of general information that should be known regarding Chunithm's 
 * References to "music" and "song" will refer to the files in the ``music`` folder, which includes ``Music.xml``, as well as the chart files. References to ``audio`` will refer to the files in the ``cueFile`` folder.
 * If anyone makes a tool to streamline any process outlined in this document, while credit to this document obviously isn't required (see [UNLICENSE](https://github.com/Suprnova123/Chunithm-Research/blob/main/UNLICENSE)), it would still be appreciated.
 
+# Ending Songs
+
+When playing a song in Chunithm, the chart will "end" after the last note. This is where the animation for the progress bar at the top and the FULL COMBO/ALL JUSTICE graphic appear. However, the song will "end" after the audio file is finished playing. This is where any skills that occur at the end of a song (such as SUPPORT) will activate, and the results screen will appear shortly after.
+
 # Folders
 
 Chunithm's method of receiving updates involves storing the new information in separate "AXXX" folders, found in ``root¥app¥data``. These folders will have varying numbers replacing the Xs depending on the update. Any references to "AXXX" in this document will refer to an unspecified ``A`` Folder. It is worth noting that, while songs usually have their complementary files (audio, jackets, rights) in the same ``A`` folder, it is possible that they are also in other folders. At the moment, it is assumed that newer AXXX folders will overwrite the older AXXX folders' data in terms of being in-game, although the older files will remain intact, however this is not confirmed. It is worth noting that Chunithm's updates will regularly remove certain songs that were prexisting, usually from rights expiring. It is also worth noting that the major updates for Chunithm that change branding and add new features (for example, Amazon to Crystal, or Crystal to Paradise) will not involve new AXXX files, instead condensing them all into the A000 folder. The .exe in ``root¥app¥bin`` may also be overwritten, among other binaries.
@@ -29,7 +33,7 @@ Rights files are the images that appear on the bottom left side of the song sele
 
 # Dummies
 
-Dummy files are used for textures to serve as a template for how the game expects them to be formatted, mostly in terms of resolution. These dummy textures are ripped straight from the game. Note that the ``.png`` versions for these files are provided for convenience, all final versions should still be in a ``.dds`` format.
+Dummy files are used for textures to serve as a template for how the game expects them to be formatted, mostly in terms of resolution. Note that the ``.png`` versions for these files are provided for convenience, all final versions should still be in a ``.dds`` format.
 
 ## Jacket Dummies
 
