@@ -7,9 +7,21 @@ This is a list of general information that should be known regarding Chunithm's 
 * References to "music" and "song" will refer to the files in the ``music`` folder, which includes ``Music.xml``, as well as the chart files. References to ``audio`` will refer to the files in the ``cueFile`` folder.
 * If anyone makes a tool to streamline any process outlined in this document, while credit to this document obviously isn't required (see [UNLICENSE](https://github.com/Suprnova123/Chunithm-Research/blob/main/UNLICENSE)), it would still be appreciated.
 
-# Ending Songs
+# How Songs End
 
-When playing a song in Chunithm, the chart will "end" after the last note. This is where the animation for the progress bar at the top and the FULL COMBO/ALL JUSTICE graphic appear. However, the song will "end" after the audio file is finished playing. This is where any skills that occur at the end of a song (such as SUPPORT) will activate, and the results screen will appear shortly after.
+When playing a song in Chunithm, the chart will "end" after the last note. This is where the animation for the progress bar at the top and the FULL COMBO/ALL JUSTICE graphic appear. However, the song will "end" after the audio file is finished playing. This is where any skills that occur at the end of a song (such as SUPPORT skills) will activate, and the results screen will appear shortly after.
+
+# MASTER and WORLD'S END Difficulties
+
+MASTER difficulties for songs are inaccessible unless one of two conditions are fulfilled:
+
+* The player has passed the EXPERT difficulty of the song with an S rank or higher, OR
+
+* The player is using a ticket that allows playing MASTER difficulty songs. (Noted as enabled in the ticket's ``Ticket.xml`` file under the ``<playMaster>`` field)
+
+When creating custom songs, it is important to note this. Charters should always have a valid, completable chart for the EXPERT difficulty if they intend to have their chart have a MASTER difficulty. Otherwise, the chart should be set to one of the other 3 normal difficulties.
+
+WORLD'S END difficulties for songs are inaccessible unless the player is using a ticket that allows playing WORLD'S END songs. (Noted as enabled in the ticket's ``Ticket.xml`` file under the ``<playWorldsEnd>`` field) When creating custom songs, it is inadvisable to create WORLD'S END charts. It is impossible for the player to access these charts unless they are connected to an AIME or Minime server, and purchase or cheat in a WORLD'S END ticket.
 
 # Folders
 
