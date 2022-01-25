@@ -2,6 +2,7 @@ This is a list of general information that should be known regarding Chunithm's 
 
 # Meta
 
+* This guide is **not** guaranteed to be up to date with the current version of Chunithm. This guide was written with Chunithm Paradise in mind. While I assume that almost all information here will continue to be relevant in later versions of Chunithm, I cannot guarantee that it will be 100% compatible with later releases, such as Paradise Lost and NEW. Additionally, AIR SLIDE notes and AIR CRUSH notes, which made their appearances in NEW, do not have charting documentation yet. This may change in the future.
 * This is **not** a guide for creating custom songs in Chunithm "clones". This includes programs like SUSPlayer, Laverita, or Seaurchin. These games use different chart formats and have an entirely different, usually streamlined, way of implementing custom songs.
 * Chunithm makes frequent use of ``.xml`` files. This document will, for the sake of simplicity, assume that you understand the basic format of ``.xml`` files.
 * References to "music" and "song" will refer to the files in the ``music`` folder, which includes ``Music.xml``, as well as the chart files. References to ``audio`` will refer to the files in the ``cueFile`` folder.
